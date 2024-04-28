@@ -44,6 +44,7 @@ function About() {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        mode: "cors",
       },
       body: JSON.stringify({
         name: data.name,

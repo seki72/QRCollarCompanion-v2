@@ -47,6 +47,7 @@ function NewPet() {
       headers: {
         Authorization: `Bearer ${JWT}`,
         "Content-Type": "application/json",
+        mode: "cors",
       },
       body: JSON.stringify({
         pet_image: petImage ?? "",

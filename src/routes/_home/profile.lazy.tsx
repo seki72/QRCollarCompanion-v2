@@ -46,6 +46,7 @@ function Profile() {
       method: "get",
       headers: {
         Authorization: `Bearer ${jwt}`,
+        mode: "cors",
       },
     })
       .then(async (response) => {
@@ -79,6 +80,7 @@ function Profile() {
       headers: {
         Authorization: `Bearer ${jwt}`,
         "Content-Type": "application/json",
+        mode: "cors",
       },
       body: JSON.stringify(data),
     })
@@ -119,6 +121,7 @@ function Profile() {
       headers: {
         Authorization: `Bearer ${jwt}`,
         "Content-Type": "application/json",
+        mode: "cors",
       },
     }).then((response) => {
       if (!response.ok) {

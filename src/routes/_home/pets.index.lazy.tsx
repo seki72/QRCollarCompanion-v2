@@ -18,6 +18,7 @@ function Pets() {
         method: "get",
         headers: {
           Authorization: `Bearer ${JWT}`,
+          mode: "cors",
         },
       });
       const data = await response.json();

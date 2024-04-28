@@ -27,6 +27,7 @@ function Home() {
       const response = await fetch("https://qrcollarcompanion-api.onrender.com/v1/api/pets", {
         headers: {
           Authorization: `Bearer ${jwt}`,
+          mode: "cors",
         },
       });
       const data = await response.json();
@@ -39,6 +40,7 @@ function Home() {
         method: "get",
         headers: {
           Authorization: `Bearer ${jwt}`,
+          mode: "cors",
         },
       });
       const data = await response.json();

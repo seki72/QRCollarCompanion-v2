@@ -43,6 +43,7 @@ function Pet() {
         method: "get",
         headers: {
           Authorization: `Bearer ${JWT}`,
+          mode: "cors",
         },
       });
       const data = await response.json();
@@ -65,6 +66,7 @@ function Pet() {
       method: "delete",
       headers: {
         Authorization: `Bearer ${jwt}`,
+        mode: "cors",
       },
     }).then((response) => {
       if (response.ok) {
@@ -96,6 +98,7 @@ function Pet() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          mode: "cors",
         },
         body: JSON.stringify({
           longitude: longitude,
