@@ -42,7 +42,7 @@ function NewPet() {
   const onSubmit: SubmitHandler<NewPetProps> = async (data) => {
     const JWT = localStorage.getItem("access_token");
 
-    fetch("/api/v1/pets", {
+    fetch("https://qrcollarcompanion-api.onrender.com/v1/api/pets", {
       method: "post",
       headers: {
         Authorization: `Bearer ${JWT}`,

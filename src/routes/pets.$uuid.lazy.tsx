@@ -39,7 +39,7 @@ function Pet() {
   useEffect(() => {
     const fetchPet = async () => {
       const JWT = localStorage.getItem("access_token");
-      const response = await fetch(`/api/v1/pets/${uuid}`, {
+      const response = await fetch(`https://qrcollarcompanion-api.onrender.com/v1/api/pets/${uuid}`, {
         method: "get",
         headers: {
           Authorization: `Bearer ${JWT}`,
@@ -61,7 +61,7 @@ function Pet() {
   }
 
   function deletePet() {
-    fetch(`/api/v1/pets/${uuid}`, {
+    fetch(`https://qrcollarcompanion-api.onrender.com/v1/api/pets/${uuid}`, {
       method: "delete",
       headers: {
         Authorization: `Bearer ${jwt}`,
@@ -92,7 +92,7 @@ function Pet() {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
-      fetch(`/api/v1/pets/${uuid}/notify`, {
+      fetch(`https://qrcollarcompanion-api.onrender.com/v1/api/pets/${uuid}/notify`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

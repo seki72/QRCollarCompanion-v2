@@ -42,7 +42,7 @@ function Profile() {
   const fetchUser = async () => {
     const jwt = localStorage.getItem("access_token");
 
-    await fetch("/api/v1/user", {
+    await fetch("https://qrcollarcompanion-api.onrender.com/v1/api/user", {
       method: "get",
       headers: {
         Authorization: `Bearer ${jwt}`,
@@ -74,7 +74,7 @@ function Profile() {
   const submit: SubmitHandler<ChangeProfileProps> = async (data) => {
     const jwt = localStorage.getItem("access_token");
 
-    await fetch("/api/v1/user", {
+    await fetch("https://qrcollarcompanion-api.onrender.com/v1/api/user", {
       method: "put",
       headers: {
         Authorization: `Bearer ${jwt}`,
@@ -114,7 +114,7 @@ function Profile() {
   const deleteUser = async () => {
     const jwt = localStorage.getItem("access_token");
 
-    await fetch("/api/v1/user", {
+    await fetch("https://qrcollarcompanion-api.onrender.com/v1/api/user", {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${jwt}`,

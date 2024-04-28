@@ -22,7 +22,7 @@ function Index() {
   } = useForm<LoginFormProps>();
 
   const onSubmit: SubmitHandler<LoginFormProps> = async (data) => {
-    fetch("/api/v1/login", {
+    fetch("https://qrcollarcompanion-api.onrender.com/v1/api/login", {
       method: "post",
       body: JSON.stringify(data),
       headers: {
