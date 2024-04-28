@@ -14,7 +14,7 @@ function Pets() {
     const fetchPets = async () => {
       const JWT = localStorage.getItem("access_token");
 
-      const response = await fetch("https://qrcollarcompanion-api.onrender.com/v1/api/pets", {
+      const response = await fetch("https://qrcollarcompanion-api.onrender.com/api/v1/pets", {
         method: "get",
         headers: {
           Authorization: `Bearer ${JWT}`,

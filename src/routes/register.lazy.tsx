@@ -40,7 +40,7 @@ function About() {
   } = useForm<RegisterUserProps>();
 
   const submit: SubmitHandler<RegisterUserProps> = async (data) => {
-    fetch("https://qrcollarcompanion-api.onrender.com/v1/api/register", {
+    fetch("https://qrcollarcompanion-api.onrender.com/api/v1/register", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
