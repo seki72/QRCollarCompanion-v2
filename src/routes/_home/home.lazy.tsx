@@ -60,7 +60,9 @@ function Home() {
       window.open(
         `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${notification.latitude},${notification.longitude}`,
       );
-    });
+    },
+      () => { },
+      { enableHighAccuracy: true });
   }
 
   return (

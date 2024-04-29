@@ -111,7 +111,9 @@ function Pet() {
 
         setShowMessage(true);
       });
-    });
+    },
+      () => { },
+      { enableHighAccuracy: true });
   }
 
   return (
