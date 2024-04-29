@@ -78,7 +78,7 @@ function Home() {
         </div>
 
         <ul className="mt-3 space-y-3">
-          {notifications?.map((notification) => (
+          {notifications?.reverse().map((notification) => (
             <div
               className="flex max-w-md items-center justify-between rounded border border-gray-200 bg-white p-4 text-sm text-gray-800"
               key={crypto.randomUUID()}
