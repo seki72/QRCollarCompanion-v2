@@ -39,7 +39,7 @@ function Pet() {
   useEffect(() => {
     const fetchPet = async () => {
       const JWT = localStorage.getItem("access_token");
-      const response = await fetch(`https://qrcollarcompanion-api.onrender.com/api//pets/${uuid}`, {
+      const response = await fetch(`https://qrcollarcompanion-api.onrender.com/api/v1/pets/${uuid}`, {
         method: "get",
         headers: {
           Authorization: `Bearer ${JWT}`,
