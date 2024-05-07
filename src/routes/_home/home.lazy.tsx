@@ -14,6 +14,7 @@ type Notification = {
   created_at: string;
   latitude: number;
   longitude: number;
+  message?: string;
 };
 
 function Home() {
@@ -53,16 +54,18 @@ function Home() {
   }, []);
 
   function viewAddress(notification: Notification) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      window.open(
-        `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${notification.latitude},${notification.longitude}`,
-      );
-    },
-      () => { },
-      { enableHighAccuracy: true });
+        window.open(
+          `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${notification.latitude},${notification.longitude}`,
+        );
+      },
+      () => {},
+      { enableHighAccuracy: true },
+    );
   }
 
   return (
@@ -86,6 +89,7 @@ function Home() {
               <div>
                 <strong>{notification.pet.name}</strong> was scanned at{" "}
                 <strong>{format(notification.created_at, "MMM dd, yyyy 'at' hh:mm a")}</strong>
+                {notification.message && <strong>notification.message</strong>}
               </div>
               <div>
                 <button onClick={() => viewAddress(notification)} type="button">

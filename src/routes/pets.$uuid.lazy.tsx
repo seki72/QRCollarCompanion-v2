@@ -26,6 +26,8 @@ function Pet() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [jwt, setJWT] = useState<string | null>(null);
   const [showMessage, setShowMessage] = useState(false);
+  const [showNotifyModal, setShowNotifyModal] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const getJWT = async () => {
@@ -90,30 +92,33 @@ function Pet() {
   }, [showMessage]);
 
   function notifyOwner() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      fetch(`https://qrcollarcompanion-api.onrender.com/api/v1/pets/${uuid}/notify`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          mode: "cors",
-        },
-        body: JSON.stringify({
-          longitude: longitude,
-          latitude: latitude,
-        }),
-      }).then((response) => {
-        if (!response.ok) {
-          return;
-        }
+        fetch(`https://qrcollarcompanion-api.onrender.com/api/v1/pets/${uuid}/notify`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            mode: "cors",
+          },
+          body: JSON.stringify({
+            message: message,
+            longitude: longitude,
+            latitude: latitude,
+          }),
+        }).then((response) => {
+          if (!response.ok) {
+            return;
+          }
 
-        setShowMessage(true);
-      });
-    },
-      () => { },
-      { enableHighAccuracy: true });
+          setShowMessage(true);
+        });
+      },
+      () => {},
+      { enableHighAccuracy: true },
+    );
   }
 
   return (
@@ -245,7 +250,7 @@ function Pet() {
                   <p>Notified owner!</p>
                 </div>
                 <button
-                  onClick={notifyOwner}
+                  onClick={() => setShowNotifyModal(true)}
                   className="ml-3 rounded bg-green-600 p-2 text-sm font-medium text-white transition-all duration-200 ease-in-out hover:bg-green-700 hover:text-white active:bg-green-700 active:text-white"
                 >
                   Notify Owner
@@ -315,6 +320,63 @@ function Pet() {
                       onClick={deletePet}
                     >
                       Delete
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+      {/* Show Notify Owner Modal */}
+      <Transition appear show={showNotifyModal} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={() => setShowNotifyModal(false)}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                    Notify Owner
+                  </Dialog.Title>
+                  <div className="mt-2">
+                    <input
+                      type="text"
+                      id="message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50"
+                      autoFocus
+                    />
+                  </div>
+
+                  <div className="mt-4 flex justify-end">
+                    <button
+                      type="button"
+                      className="focus-visible:ring-2focus-visible:ring-offset-2 inline-flex justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                      onClick={notifyOwner}
+                    >
+                      Notify Owner
                     </button>
                   </div>
                 </Dialog.Panel>
