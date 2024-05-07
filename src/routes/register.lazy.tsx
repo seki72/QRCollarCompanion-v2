@@ -21,6 +21,7 @@ type RegisterUserProps = {
 function About() {
   const navigate = useNavigate();
   const [image, setImage] = useState("");
+  const [tosAccepted, setTosAccepted] = useState(false);
 
   function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
     const reader = new FileReader();
@@ -28,7 +29,7 @@ function About() {
     reader.onload = async () => {
       base64String = reader.result as string;
       setImage(base64String);
-    }
+    };
     reader.readAsDataURL(event.target!.files![0]);
   }
 
@@ -54,7 +55,7 @@ function About() {
         password: data.password,
         gender: data.gender,
         age: data.age,
-        image: image.replace(/^data:image\/[a-z]+;base64,/, ''),
+        image: image.replace(/^data:image\/[a-z]+;base64,/, ""),
       }),
     })
       .then(async (response) => {
@@ -209,6 +210,18 @@ function About() {
             />
           </div>
 
+          <div className="mt-4">
+            <input
+              type="checkbox"
+              className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-green-600 focus:ring-green-500"
+              checked={tosAccepted}
+              onChange={() => setTosAccepted((prev) => !prev)}
+            />
+            <Link to="/tos" className="ml-2 text-sm text-green-600 hover:text-green-700">
+              I agree to the Terms and Conditions.
+            </Link>
+          </div>
+
           <div className="mt-4 flex justify-between">
             <Link to="/" className="text-xs">
               Already have an account? <br />
@@ -217,6 +230,7 @@ function About() {
             <button
               type="submit"
               className=" inline-flex items-center rounded-lg border border-transparent bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-green-700 disabled:pointer-events-none disabled:opacity-50"
+              disabled={!tosAccepted}
             >
               Register
             </button>
