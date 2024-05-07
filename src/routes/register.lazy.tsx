@@ -217,7 +217,7 @@ function About() {
               checked={tosAccepted}
               onChange={() => setTosAccepted((prev) => !prev)}
             />
-            <Link to="/tos" className="ml-2 text-sm text-green-600 hover:text-green-700">
+            <Link to="/tos" className="ml-2 text-sm text-green-600 hover:text-green-700" replace>
               I agree to the Terms and Conditions.
             </Link>
           </div>
