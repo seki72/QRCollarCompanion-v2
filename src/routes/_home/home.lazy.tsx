@@ -91,7 +91,7 @@ function Home() {
                   <strong>{notification.pet.name}</strong> was scanned at{" "}
                   <strong>{format(notification.created_at, "MMM dd, yyyy 'at' hh:mm a")}</strong>
                 </p>
-                {notification.message && <strong>{notification.message}</strong>}
+                {notification.message && <p>{notification.message}</p>}
               </div>
               <div>
                 <button onClick={() => viewAddress(notification)} type="button">
