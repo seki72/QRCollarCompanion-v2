@@ -87,9 +87,11 @@ function Home() {
               key={crypto.randomUUID()}
             >
               <div>
-                <strong>{notification.pet.name}</strong> was scanned at{" "}
-                <strong>{format(notification.created_at, "MMM dd, yyyy 'at' hh:mm a")}</strong>
-                {notification.message && <strong>notification.message</strong>}
+                <p>
+                  <strong>{notification.pet.name}</strong> was scanned at{" "}
+                  <strong>{format(notification.created_at, "MMM dd, yyyy 'at' hh:mm a")}</strong>
+                </p>
+                {notification.message && <strong>{notification.message}</strong>}
               </div>
               <div>
                 <button onClick={() => viewAddress(notification)} type="button">
